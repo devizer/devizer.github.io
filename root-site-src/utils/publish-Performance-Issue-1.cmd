@@ -1,0 +1,1 @@
+gh release create -t "Performance-Issue-1.mp4" -n "Demo Video for github pages" video/Performance-Issue-1 W:\S4Cast-IndexScan-Issue\Performance-Issue-1.mp4

@@ -1,0 +1,1 @@
+gh release create -t "ApplicationComponents.mp4" -n "Demo Video for github pages" video/ApplicationComponents W:\S4ScreenCast-Src\Video\ApplicationComponents.mp4

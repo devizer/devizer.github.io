@@ -1,0 +1,166 @@
+html {
+  /* overflow: -moz-scrollbars-vertical !important; */
+  overflow-y: scroll !important;;
+}
+
+.padding-top {
+  padding-top: 16px;
+}
+
+.right-aligned {
+  text-align: right;
+}
+
+.left-aligned {
+  text-align: left;
+}
+
+.center-aligned {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rt-tr .rt-th {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  font-size: 16px;
+}
+
+.rt-th {
+  font-weight: bold;
+  color: #444;
+}
+
+.ReactTable .rt-table {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.rt-tr-group:last-child .rt-tr {
+  /*border-bottom: 1px solid rgba(0, 0, 0, 0.8);*/
+}
+
+.ReactTable .rt-thead.-headerGroups .rt-th:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.ReactTable .rt-thead.-header {
+  box-shadow: 0 0px rgba(0, 0, 0, 0.4) !important;
+  /*border-top: 1px solid rgba(0, 0, 0, 0.5) !important;*/
+  /*border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;*/
+}
+.ReactTable .rt-thead.-header .rt-th:not(:first-child) {
+  border-top: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+.ReactTable .rt-thead.-header .rt-th:first-child {
+  border-top: 0px solid rgba(0, 0, 0, 0.0) !important;
+}
+.ReactTable .rt-thead.-header .rt-th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.SelectedTableRow {
+  /*font-size: 17px !important;*/
+  background: #4f9a94 !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.UnSelectedTableRow {
+  /*font-size: 17px !important;*/
+  background: white !important;
+  color: black !important;
+  cursor: pointer;
+}
+
+/* Sessions, ActionKeys, ActionDetails */
+.ReactTable.ActionKeysRT .rt-thead.-header .rt-th:nth-child(1), 
+.ReactTable.ActionKeysRT .rt-thead.-header .rt-th:nth-child(7)
+{
+  border-right: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+.ReactTable.ActionKeysRT .rt-tbody .rt-td:nth-child(1),
+.ReactTable.ActionKeysRT .rt-tbody .rt-td:nth-child(7)
+{
+  border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.ReactTable .rt-thead {
+  background-color: #F2F2F2 !important;
+  color: #111 !important;;
+}
+
+.ReactTable .multiline-cell {
+  white-space: normal !important;
+  overflow: auto !important;;
+  text-overflow: fade !important;;
+}
+
+
+div[role='tabpanel'] > div {
+  padding: 4px
+}
+
+h3.ActionDetailsHeader {
+  font-weight: normal;
+}
+
+table.SqlStatements {
+  border-collapse: collapse;
+  border: 1px solid #CCC;
+}
+
+table.SqlStatements .sql-error { width: 60px; max-width: 60px; min-width: 60px; text-align: center }
+table.SqlStatements tr.damn .sql-error { background-color: #D3225A; color: white; }
+table.SqlStatements .sql-code { width: 500px; min-width:500px; max-width:500px; padding-top: 0px; padding-bottom: 0px;  }
+table.SqlStatements .sql-code pre { width: 100%; min-width:100%; max-width:100%; padding-top: 0px; padding-bottom: 0px;  }
+table.SqlStatements .sql-cpu { width: 120px; max-width: 120px; min-width: 120px }
+table.SqlStatements .sql-io { width: 120px; max-width: 120px; min-width: 120px }
+/*table.SqlStatements td.sql-error { border-right: 1px solid #BBB }*/
+table.SqlStatements td { padding-left: 5px; padding-right: 5px; border: 1px solid #CCC }
+table.SqlStatements hr.hr-rows-separator { width: 60px; border: none; height: 1px; color: #CCC !important; background-color: #CCC !important; }
+
+.sql-code pre { white-space: pre-wrap !important; overflow-wrap: break-word !important; background-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; overflow-x: hidden !important; }
+.sql-code code { white-space: pre-wrap !important; overflow-wrap: break-word !important; }
+
