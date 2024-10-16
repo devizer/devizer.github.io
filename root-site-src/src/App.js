@@ -17,8 +17,8 @@ import Issue1TitlePng from './Posters/Issue1-Title.png'
 import { ReactComponent as FireIconSvg } from './Icons/FireSvgIcon.svg';
 import { ReactComponent as OwlIconSvg } from './Icons/OwlSvgIcon.svg';
 import Para from "./Para";
-const FireIcon = (size=20,color='#555') => (<FireIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
-const OwlIcon = (size=20,color='#000') => (<OwlIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
+const FireIcon = (size= 20, color='#555') => (<FireIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
+const OwlIcon = (size= 20,  color='#000') => (<OwlIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
 
 
 require('typeface-roboto')
@@ -102,6 +102,10 @@ function App() {
         "Live Updates on Dashboard UI requires modern browser running on relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
+    const fireIconColor = ThemeStore.getSystemTheme() === "light" ? "#555" : "#BBB";
+    const owlIconColor = ThemeStore.getSystemTheme() === "light" ? "#000" : "#FFF"; 
+
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -123,7 +127,7 @@ function App() {
                 </Container>
             </AppBar>
             
-            <Para header={(<>{FireIcon()} Features</>)} list={features} />
+            <Para header={(<>{FireIcon(20, fireIconColor)} Features</>)} list={features} />
             
             <br/>
 
@@ -155,7 +159,7 @@ function App() {
 
             <br/>
             
-            <Para header={(<>{OwlIcon()} System Requirements</>)} list={systemRequirement} bulletChar={"•"}/>
+            <Para header={(<>{OwlIcon(20, owlIconColor)} System Requirements</>)} list={systemRequirement} bulletChar={"•"}/>
             
             <br/>
 
