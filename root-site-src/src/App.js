@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import './App.css';
 import {useEffect, useState} from "react";
 import ThemeStore from "./stores/ThemeStore";
+import {BuildDate} from "./BuildDate";
 
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -26,6 +27,8 @@ require('isomorphic-fetch');
 
 function App() {
 
+
+    let buildDate = BuildDate?.length?.toLocaleString();
     const [systemTheme, setSystemTheme] = useState(ThemeStore.getSystemTheme());
     const onThemeChanged = newTheme => {
         const color = newTheme === "light" ? "DarkGreen" : "LightGreen";
@@ -103,7 +106,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <AppBar position="static" className={classes.root}>
+            <AppBar position="static" className={classes.root} buildDate={BuildDate}>
                 <Container maxWidth="md">
                 <Toolbar style={{paddingLeft:0, marginLeft:0}}>
                 <img src="/mstile-150x150.png" style={{width:56, height: 56, paddingTop:8, paddingLeft: 8}} />
