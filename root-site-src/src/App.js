@@ -106,7 +106,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <AppBar position="static" className={classes.root} buildDate={BuildDate}>
+            <AppBar position="static" className={classes.root} data-builddate={BuildDate}>
                 <Container maxWidth="md">
                 <Toolbar style={{paddingLeft:0, marginLeft:0}}>
                 <img src="/mstile-150x150.png" style={{width:56, height: 56, paddingTop:8, paddingLeft: 8}} />
