@@ -13,6 +13,7 @@ import {Container, makeStyles, Paper, Toolbar, Typography} from "@material-ui/co
 import AppBar from '@material-ui/core/AppBar';
 
 import Issue1TitlePng from './Posters/Issue1-Title.png'
+import RootCategoriesTitlePng from './Posters/Title-Root-Categories.png'
 
 import { ReactComponent as FireIconSvg } from './Icons/FireSvgIcon.svg';
 import { ReactComponent as OwlIconSvg } from './Icons/OwlSvgIcon.svg';
@@ -85,7 +86,7 @@ function App() {
     
     const features = [
         "Prevent performance degradation on a release.",
-        "Get whole picture of the performance of your application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
+        "Get the whole picture of the performance of your application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
         "Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.",
         "Debuggable SQL Server underlying level interop.",
         "Bottleneck visualization, including application side and SQL Server side.",
@@ -97,9 +98,9 @@ function App() {
     const systemRequirement = [
         `Your App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
         `Your SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022+ including SQL Server LocalDB.`,
-        "Dashboard API: Windows, Linux or MacOS as container or SystemD or Windows Service. IIS is also supported.",
-        "Full support of both Intel and ARM platforms for Your application components and Dashboard.",
-        "Live Updates on Dashboard UI requires modern browser running on relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
+        "Dashboard API: Windows, Linux, or MacOS as container or SystemD or Windows Service. IIS is also supported.",
+        "Full support of both Intel and ARM platforms for your application components and Dashboard.",
+        "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
     const fireIconColor = ThemeStore.getSystemTheme() === "light" ? "#555" : "#BBB";
@@ -135,9 +136,9 @@ function App() {
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={classes.paragraph}>
-                        ❋ Highlight: Root Categories are application componenets
+                        ❋ Highlight: Root Categories are the application components
                     </Typography>
-                    <video controls width="100%" loop muted>
+                    <video controls width="100%" loop muted poster={RootCategoriesTitlePng}>
                         <source src="https://github.com/devizer/devizer.github.io/releases/download/video%2FApplicationComponents/ApplicationComponents.mp4" />
                     </video>
                 </Paper>
@@ -149,7 +150,7 @@ function App() {
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={classes.paragraph}>
-                        ❋ Demo 2: Drilldown into performance issue
+                        ❋ Demo 2: Drill down into a performance issue
                     </Typography>
                     <video controls width="100%" loop muted poster={Issue1TitlePng}>
                         <source src="https://github.com/devizer/devizer.github.io/releases/download/video%2FPerformance-Issue-1/Performance-Issue-1.mp4" />
