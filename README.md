@@ -1,1 +1,0 @@
-# devizer.github.io
