@@ -6,6 +6,7 @@ if errorlevel 1 goto :error
 rd /q /s ..\static
 xcopy /s /e /y /q /r build ..
 if errorlevel 1 goto :error
+git add --all ..\static
 echo DONE! Both Build and XCOPY successfully completed.
 goto :exit
 
