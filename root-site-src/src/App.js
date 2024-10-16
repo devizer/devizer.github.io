@@ -103,10 +103,8 @@ function App() {
         "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
-    const fireIconColor = ThemeStore.getSystemTheme() === "light" ? "#555" : "#BBB";
-    const owlIconColor = ThemeStore.getSystemTheme() === "light" ? "#000" : "#FFF"; 
-
-
+    const fireIconColor = systemTheme === "light" ? "#555" : "#BBB";
+    const owlIconColor = systemTheme === "light" ? "#000" : "#FFF"; 
 
     return (
         <ThemeProvider theme={theme}>
