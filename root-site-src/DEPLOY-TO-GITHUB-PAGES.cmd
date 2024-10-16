@@ -1,4 +1,4 @@
-@set FMT=yyyy-MM-dd HH-mm-ss&& for /f "delims=;" %%i in ('powershell -command "[System.DateTime]::Now.ToString($ENV:FMT)"') DO set datetime=%%i
+@set FMT=yyyy-MM-dd HH:mm:ss&& for /f "delims=;" %%i in ('powershell -command "[System.DateTime]::Now.ToString($ENV:FMT)"') DO set datetime=%%i
 echo export const BuildDate = "%datetime%" > src\BuildDate.js
 @rd /q /s build 
 call yarn build
