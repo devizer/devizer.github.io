@@ -14,7 +14,7 @@ import AppBar from '@material-ui/core/AppBar';
 import { ReactComponent as FireIconSvg } from './Icons/FireSvgIcon.svg';
 const FireIcon = (size=20,color='#555') => (<FireIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
 
-export default function Para({header, list}) {
+export default function Para({header, list, bulletChar = "✓"}) {
 
     const useStyles = makeStyles((theme) => ({
         paragraph: {
@@ -37,7 +37,7 @@ export default function Para({header, list}) {
                 </Typography>
                 {list.map(onePoint => (
                     <Typography variant="body1">
-                        ✓ {onePoint}
+                        {bulletChar} {onePoint}
                     </Typography>
                 ))}
             </Paper>

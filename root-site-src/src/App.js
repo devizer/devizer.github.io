@@ -98,8 +98,8 @@ function App() {
         `Your App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
         `Your SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022+ including SQL Server LocalDB.`,
         "Dashboard API: Windows, Linux or MacOS as container or SystemD or Windows Service. IIS is also supported.",
-        "Full support of both Intel and ARM platforms for Your application components and Dashboard as well as Dashboard",
-        "Live Updates on Dashboard UI requires modern browser running on relatively fast CPU (i7 4770 and i3 10100 are ok, but Atom or AMD FX are not).",
+        "Full support of both Intel and ARM platforms for Your application components and Dashboard.",
+        "Live Updates on Dashboard UI requires modern browser running on relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
 
@@ -155,7 +155,7 @@ function App() {
 
             <br/>
             
-            <Para header={(<>{OwlIcon()} System Requirements</>)} list={systemRequirement} />
+            <Para header={(<>{OwlIcon()} System Requirements</>)} list={systemRequirement} bulletChar={"•"}/>
             
             <br/>
 
