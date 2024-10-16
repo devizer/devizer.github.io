@@ -151,7 +151,9 @@ function App() {
             </Container>
 
             <br/>
+            
             <Para header={(<>{OwlIcon()} System Requirements</>)} list={systemRequirement} />
+            
             <br/>
 
 

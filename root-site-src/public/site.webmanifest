@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "SqlInsights Sixth Sense Dashboard",
+    "short_name": "SqlInsights Sixth Sense Dashboard",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
