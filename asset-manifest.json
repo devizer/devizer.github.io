@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.8ea51704.chunk.css",
-    "main.js": "/static/js/main.16f4e60a.chunk.js",
-    "main.js.map": "/static/js/main.16f4e60a.chunk.js.map",
+    "main.js": "/static/js/main.87d3d0b2.chunk.js",
+    "main.js.map": "/static/js/main.87d3d0b2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.bf19b9c3.js",
     "runtime-main.js.map": "/static/js/runtime-main.bf19b9c3.js.map",
     "static/css/2.1ca50200.chunk.css": "/static/css/2.1ca50200.chunk.css",
@@ -13,9 +13,10 @@
     "static/css/main.8ea51704.chunk.css.map": "/static/css/main.8ea51704.chunk.css.map",
     "static/js/2.c007e5df.chunk.js.LICENSE.txt": "/static/js/2.c007e5df.chunk.js.LICENSE.txt",
     "static/media/FireSvgIcon.af870cae.svg": "/static/media/FireSvgIcon.af870cae.svg",
-    "static/media/Issue1-Title.5a6565c9.png": "/static/media/Issue1-Title.5a6565c9.png",
+    "static/media/Issue1-Title.dbf9b1aa.png": "/static/media/Issue1-Title.dbf9b1aa.png",
     "static/media/OwlSvgIcon.0292c79c.svg": "/static/media/OwlSvgIcon.0292c79c.svg",
-    "static/media/Title-Root-Categories.e56b2373.png": "/static/media/Title-Root-Categories.e56b2373.png",
+    "static/media/Title-Issue2.04166f90.png": "/static/media/Title-Issue2.04166f90.png",
+    "static/media/Title-Root-Categories.82823af6.png": "/static/media/Title-Root-Categories.82823af6.png",
     "static/media/index.css": "/static/media/roboto-latin-900italic.cb5ad999.woff2"
   },
   "entrypoints": [
@@ -23,6 +24,6 @@
     "static/css/2.1ca50200.chunk.css",
     "static/js/2.c007e5df.chunk.js",
     "static/css/main.8ea51704.chunk.css",
-    "static/js/main.16f4e60a.chunk.js"
+    "static/js/main.87d3d0b2.chunk.js"
   ]
 }

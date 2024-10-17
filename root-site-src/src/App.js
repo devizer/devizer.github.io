@@ -14,6 +14,7 @@ import AppBar from '@material-ui/core/AppBar';
 
 import Issue1TitlePng from './Posters/Issue1-Title.png'
 import RootCategoriesTitlePng from './Posters/Title-Root-Categories.png'
+import Issue2TitlePng from './Posters/Title-Issue2.png'
 
 import { ReactComponent as FireIconSvg } from './Icons/FireSvgIcon.svg';
 import { ReactComponent as OwlIconSvg } from './Icons/OwlSvgIcon.svg';
@@ -150,18 +151,31 @@ function App() {
                     <Typography variant="h5" className={classes.paragraph}>
                         ❋ Demo 2: Drill down into a performance issue
                     </Typography>
-                    <video controls width="100%" loop muted poster={Issue1TitlePng}>
+                    <video controls poster={Issue1TitlePng} width="100%" loop muted>
                         <source src="https://github.com/devizer/devizer.github.io/releases/download/video%2FPerformance-Issue-1/Performance-Issue-1.mp4" />
                     </video>
                 </Paper>
             </Container>
-
+            
+            <br/>
+            
+            <Container maxWidth="md" >
+                <br/>
+                <Paper elevation={3} >
+                    <Typography variant="h5" className={classes.paragraph}>
+                        ❋ Demo 3: Drill down into paging issue
+                    </Typography>
+                    <video controls width="100%" loop muted poster={Issue2TitlePng}>
+                        <source src="https://github.com/devizer/devizer.github.io/releases/download/video%2FPaging-Issue-2/Paging-Issue-2.mp4" />
+                    </video>
+                </Paper>
+            </Container>
+            
             <br/>
             
             <Para header={(<>{OwlIcon(20, owlIconColor)} System Requirements</>)} list={systemRequirement} bulletChar={"•"}/>
             
             <br/>
-
 
         </ThemeProvider>
     );
