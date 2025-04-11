@@ -94,7 +94,7 @@ function App() {
     
     const features = [
         /*"Prevent performance degradation on a release.",*/
-        "Whole picture of the performance of your application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
+        "Whole picture of the performance of yours application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
         "Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.",
         "Debuggable SQL Server underlying level interop.",
         "Bottleneck visualization, including application side and SQL Server side.",
@@ -104,10 +104,10 @@ function App() {
     
     const nbsp = String.fromCharCode(160);
     const systemRequirement = [
-        `Your App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
-        `Your SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022+ including SQL Server LocalDB.`,
+        `Yours App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
+        `Yours SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022+ including SQL Server LocalDB.`,
         "Dashboard API: Windows, Linux, or MacOS as container or SystemD or Windows Service. IIS is also supported.",
-        "Full support of both Intel and ARM platforms for your application components and Dashboard.",
+        "Full support of both Intel and ARM platforms for yours application components and Dashboard.",
         "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
@@ -142,7 +142,7 @@ function App() {
                     SQL Server Sixth Sense Dashboard
                     <div className={classes.separator} />
                     <small style={{fontWeight: "normal", opacity: "70%", lineHeight: "18px"}}>
-                        Your sixth sense in developent, testing, and maintenance
+                        Yours sixth sense in developent, testing, and maintenance
                     </small>
                 </Typography>
                 </div>
