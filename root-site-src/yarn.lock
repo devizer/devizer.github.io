@@ -2013,6 +2013,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/roboto-slab@^5.2.5":
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto-slab/-/roboto-slab-5.2.5.tgz#6a96d9df069f5f593fd7a907e6a5d88870c345cb"
+  integrity sha512-pOWJaBy+i4bI10Q5aSXqXxfF5Oow1wq07+5QFX3O15QkQ0TwTXDQR4yxFUjmVYR2p8tZOe408FbR25AQx8mqwg==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"

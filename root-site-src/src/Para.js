@@ -14,14 +14,18 @@ import AppBar from '@material-ui/core/AppBar';
 import { ReactComponent as FireIconSvg } from './Icons/FireSvgIcon.svg';
 const FireIcon = (size=20,color='#555') => (<FireIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
 
-export default function Para({header, list, bulletChar = "✓"}) {
+export default function Para({header, list, bulletChar = "✓", itemPaddingTop = 12, itemPaddingTopFirst = 12, itemPaddingBottom = 0}) {
 
     const useStyles = makeStyles((theme) => ({
         paragraph: {
             padding: "12px 24px 20px 24px",
             "& > p": {
-                paddingTop: 8,
-                paddingBottom: 0,
+                paddingTop: itemPaddingTop,
+                paddingBottom: itemPaddingBottom,
+            },
+            "& > p:nth-child(2)": {
+                paddingTop: itemPaddingTopFirst,
+                paddingBottom: itemPaddingBottom,
             }
         }
 
@@ -32,12 +36,12 @@ export default function Para({header, list, bulletChar = "✓"}) {
         <Container maxWidth="md">
             <br/>
             <Paper elevation={3} className={classes.paragraph}>
-                <Typography variant="h5">
+                <Typography variant="h5" className="ParaHeader">
                     {header}
                 </Typography>
                 {list.map(onePoint => (
                     <Typography variant="body1">
-                        {bulletChar} {onePoint}
+                        {bulletChar} {typeof onePoint === "function" ? onePoint() : onePoint}
                     </Typography>
                 ))}
             </Paper>

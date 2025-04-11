@@ -1,29 +1,32 @@
 {
   "files": {
-    "main.css": "/static/css/main.8ea51704.chunk.css",
-    "main.js": "/static/js/main.c8144752.chunk.js",
-    "main.js.map": "/static/js/main.c8144752.chunk.js.map",
+    "main.css": "/static/css/main.8eaba8f5.chunk.css",
+    "main.js": "/static/js/main.aed736cf.chunk.js",
+    "main.js.map": "/static/js/main.aed736cf.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.bf19b9c3.js",
     "runtime-main.js.map": "/static/js/runtime-main.bf19b9c3.js.map",
-    "static/css/2.1ca50200.chunk.css": "/static/css/2.1ca50200.chunk.css",
-    "static/js/2.99c7162f.chunk.js": "/static/js/2.99c7162f.chunk.js",
-    "static/js/2.99c7162f.chunk.js.map": "/static/js/2.99c7162f.chunk.js.map",
+    "static/css/2.cf3b23db.chunk.css": "/static/css/2.cf3b23db.chunk.css",
+    "static/js/2.710e77ae.chunk.js": "/static/js/2.710e77ae.chunk.js",
+    "static/js/2.710e77ae.chunk.js.map": "/static/js/2.710e77ae.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.1ca50200.chunk.css.map": "/static/css/2.1ca50200.chunk.css.map",
-    "static/css/main.8ea51704.chunk.css.map": "/static/css/main.8ea51704.chunk.css.map",
-    "static/js/2.99c7162f.chunk.js.LICENSE.txt": "/static/js/2.99c7162f.chunk.js.LICENSE.txt",
+    "static/css/2.cf3b23db.chunk.css.map": "/static/css/2.cf3b23db.chunk.css.map",
+    "static/css/main.8eaba8f5.chunk.css.map": "/static/css/main.8eaba8f5.chunk.css.map",
+    "static/js/2.710e77ae.chunk.js.LICENSE.txt": "/static/js/2.710e77ae.chunk.js.LICENSE.txt",
     "static/media/FireSvgIcon.af870cae.svg": "/static/media/FireSvgIcon.af870cae.svg",
     "static/media/Issue1-Title.2e6d3fc9.png": "/static/media/Issue1-Title.2e6d3fc9.png",
     "static/media/OwlSvgIcon.0292c79c.svg": "/static/media/OwlSvgIcon.0292c79c.svg",
+    "static/media/ReasonsToBuyIcon.d1deea45.svg": "/static/media/ReasonsToBuyIcon.d1deea45.svg",
+    "static/media/ShineIcon.18b61c51.svg": "/static/media/ShineIcon.18b61c51.svg",
     "static/media/Title-Issue2.04166f90.png": "/static/media/Title-Issue2.04166f90.png",
     "static/media/Title-Root-Categories.82823af6.png": "/static/media/Title-Root-Categories.82823af6.png",
-    "static/media/index.css": "/static/media/roboto-latin-900italic.cb5ad999.woff2"
+    "static/media/index.css": "/static/media/roboto-latin-900italic.cb5ad999.woff2",
+    "static/media/400.css": "/static/media/roboto-slab-vietnamese-400-normal.fb143376.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.bf19b9c3.js",
-    "static/css/2.1ca50200.chunk.css",
-    "static/js/2.99c7162f.chunk.js",
-    "static/css/main.8ea51704.chunk.css",
-    "static/js/main.c8144752.chunk.js"
+    "static/css/2.cf3b23db.chunk.css",
+    "static/js/2.710e77ae.chunk.js",
+    "static/css/main.8eaba8f5.chunk.css",
+    "static/js/main.aed736cf.chunk.js"
   ]
 }

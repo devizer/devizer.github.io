@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import './App.css';
+import "@fontsource/roboto-slab/400.css"; // Specify weight
 import {useEffect, useState} from "react";
 import ThemeStore from "./stores/ThemeStore";
 import {BuildDate} from "./BuildDate";
@@ -18,12 +19,18 @@ import Issue2TitlePng from './Posters/Title-Issue2.png'
 
 import { ReactComponent as FireIconSvg } from './Icons/FireSvgIcon.svg';
 import { ReactComponent as OwlIconSvg } from './Icons/OwlSvgIcon.svg';
+import { ReactComponent as ReasonToBuyIconSvg } from './Icons/ReasonsToBuyIcon.svg';
+import { ReactComponent as ShineIconSvg } from './Icons/ShineIcon.svg';
 import Para from "./Para";
 const FireIcon = (size= 20, color='#555') => (<FireIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
 const OwlIcon = (size= 20,  color='#000') => (<OwlIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
+const ReasonToBuyIcon = (size= 20,  color='#000') => (<ReasonToBuyIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
+const ShineIcon = (size= 20,  color='#000') => (<ShineIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
+const ShineIconAligned = (size= 20,  color='#000') => (<div style={{paddingRight:8,marginTop:4,display:'inline-block'}}>{ShineIcon(size, color)}</div>);
 
 
 require('typeface-roboto')
+
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -86,8 +93,8 @@ function App() {
     const classes = useStyles();
     
     const features = [
-        "Prevent performance degradation on a release.",
-        "Get the whole picture of the performance of your application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
+        /*"Prevent performance degradation on a release.",*/
+        "Whole picture of the performance of your application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
         "Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.",
         "Debuggable SQL Server underlying level interop.",
         "Bottleneck visualization, including application side and SQL Server side.",
@@ -104,8 +111,24 @@ function App() {
         "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
+    let reasonsToBuy = [
+        "Get confidence in Performance and Scalability before deploying an update to production.",
+        "Prevent performance degradation along with newly added features.",
+        "Scale up hardening by the ease of identifying performance and scalability issues.",
+        "Get solution-proven implementation of strategy in quality by functional testing in a repeatable and reliable way.",
+    ];
+
     const fireIconColor = systemTheme === "light" ? "#555" : "#BBB";
-    const owlIconColor = systemTheme === "light" ? "#000" : "#FFF"; 
+    const owlIconColor = systemTheme === "light" ? "#000" : "#FFF";
+    reasonsToBuy = reasonsToBuy.map(s => {
+        return (
+            <div style={{display: "flex", alignItems: 'center', paddingBottom: 0}}>
+                <span style={{alignSelf: 'flex-start'}}>{ShineIconAligned(40, owlIconColor)}</span>
+                <span style={{marginTop:-1}}>{s}</span>
+            </div>
+        );
+    });
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -134,7 +157,7 @@ function App() {
             <Container maxWidth="md" >
                 <br/>
                 <Paper elevation={3} >
-                    <Typography variant="h5" className={classes.paragraph}>
+                    <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
                         ❋ Highlight: Root Categories are the application components
                     </Typography>
                     <video controls width="100%" loop muted poster={RootCategoriesTitlePng}>
@@ -148,7 +171,7 @@ function App() {
             <Container maxWidth="md" >
                 <br/>
                 <Paper elevation={3} >
-                    <Typography variant="h5" className={classes.paragraph}>
+                    <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
                         ❋ Demo 2: Drill down into a performance issue
                     </Typography>
                     <video controls poster={Issue1TitlePng} width="100%" loop muted>
@@ -162,7 +185,7 @@ function App() {
             <Container maxWidth="md" >
                 <br/>
                 <Paper elevation={3} >
-                    <Typography variant="h5" className={classes.paragraph}>
+                    <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
                         ❋ Demo 3: Drill down into paging issue
                     </Typography>
                     <video controls width="100%" loop muted poster={Issue2TitlePng}>
@@ -173,8 +196,12 @@ function App() {
             
             <br/>
             
+            <Para itemPaddingBottom={8} itemPaddingTopFirst={12} itemPaddingTop={1} header={(<>{ReasonToBuyIcon(20, owlIconColor)} 4 Reasons to buy S5 Dashboard</>)} list={reasonsToBuy} bulletChar={null}/>
+
+            <br/>
+
             <Para header={(<>{OwlIcon(20, owlIconColor)} System Requirements</>)} list={systemRequirement} bulletChar={"•"}/>
-            
+
             <br/>
 
         </ThemeProvider>
