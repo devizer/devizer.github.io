@@ -91,7 +91,11 @@ function App() {
     }));
     
     const classes = useStyles();
-    
+
+    const fireIconColor = systemTheme === "light" ? "#555" : "#BBB";
+    const owlIconColor = systemTheme === "light" ? "#000" : "#FFF";
+    const nbsp = String.fromCharCode(160);
+
     const features = [
         /*"Prevent performance degradation on a release.",*/
         "Whole picture of the performance of yours application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
@@ -102,24 +106,13 @@ function App() {
         "Bugs visualization in parameters' propagation."
     ];
     
-    const nbsp = String.fromCharCode(160);
-    const systemRequirement = [
-        `Yours App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
-        `Yours SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022+ including SQL Server LocalDB.`,
-        "Dashboard API: Windows, Linux, or MacOS as container or SystemD or Windows Service. IIS is also supported.",
-        "Full support of both Intel and ARM platforms for yours application components and Dashboard.",
-        "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
-    ];
-
     let reasonsToBuy = [
         "Get confidence in Performance and Scalability before deploying an update to production.",
         "Prevent performance degradation along with newly added features.",
         "Scale up hardening by the ease of identifying performance and scalability issues.",
-        "Get solution-proven implementation of strategy in quality by functional testing in a repeatable and reliable way.",
+        "Get proven implementation of strategy in quality by functional testing in a repeatable and reliable way.",
     ];
 
-    const fireIconColor = systemTheme === "light" ? "#555" : "#BBB";
-    const owlIconColor = systemTheme === "light" ? "#000" : "#FFF";
     reasonsToBuy = reasonsToBuy.map(s => {
         return (
             <div style={{display: "flex", alignItems: 'center', paddingBottom: 0}}>
@@ -128,6 +121,15 @@ function App() {
             </div>
         );
     });
+
+
+    const systemRequirement = [
+        `Yours App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
+        `Yours SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022+ including SQL Server LocalDB.`,
+        "Dashboard API: Windows, Linux, or MacOS as container or SystemD or Windows Service. IIS is also supported.",
+        "Full support of both Intel and ARM platforms for yours application components and Dashboard.",
+        "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
+    ];
 
 
     return (
