@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import './App.css';
+import './Animations.css';
 import "@fontsource/roboto-slab/latin-400.css"; // Specify weight
 import {useEffect, useState} from "react";
 import ThemeStore from "./stores/ThemeStore";
@@ -181,7 +182,7 @@ function App() {
 
             <br/><br/>
             <Container className={classesRows.root} maxWidth="md">
-                <Paper elevation={3}>
+                <Paper elevation={3} className={'SuperFeatureContainer'}>
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
                         {FireIcon(20, fireIconColor)}&nbsp;&nbsp;The Killer Feature
                     </Typography>
@@ -189,7 +190,7 @@ function App() {
                         Whole picture of the performance of yours application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.
                     </Typography>
                 </Paper>
-                <Paper elevation={3}>
+                <Paper elevation={3} className={'SuperFeatureContainer'}>
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
                         {FireIcon(20, fireIconColor)}&nbsp;&nbsp;The Bombastic Feature
                     </Typography>

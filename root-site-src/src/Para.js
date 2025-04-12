@@ -35,12 +35,12 @@ export default function Para({header, list, bulletChar = "✓", itemPaddingTop =
     return (
         <Container maxWidth="md">
             <br/>
-            <Paper elevation={3} className={classes.paragraph}>
+            <Paper elevation={3} className={`${classes.paragraph} PaperContainer`}>
                 <Typography variant="h5" className="ParaHeader">
                     {header}
                 </Typography>
                 {list.map(onePoint => (
-                    <Typography variant="body1">
+                    <Typography variant="body1" className='Para-Graph'>
                         {bulletChar} {typeof onePoint === "function" ? onePoint() : onePoint}
                     </Typography>
                 ))}
