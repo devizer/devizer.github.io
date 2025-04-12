@@ -125,10 +125,12 @@ function App() {
 
     const systemRequirement = [
         `Yours App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
-        `Yours SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022+ including SQL Server LocalDB.`,
-        "Dashboard API: Windows, Linux, or MacOS as container or SystemD or Windows Service. IIS is also supported.",
+        `Yours SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022 including Express Edition and LocalDB.`,
         "Full support of both Intel and ARM platforms for yours application components and Dashboard.",
-        "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
+        "Dashboard API: Windows, Linux, or MacOS as container or SystemD or Windows Service. IIS is also supported.",
+        `Dashboard desktop for Windows: x64, arm64, and x86.`
+        // `Dashboard desktop for Windows: x64, arm64, and x86 on Windows 7${nbsp}…${nbsp}11 and Server 2008${nbsp}R2${nbsp}…${nbsp}2025`
+        // "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
 
@@ -138,7 +140,7 @@ function App() {
             <AppBar position="static" className={classes.root} data-builddate={BuildDate}>
                 <Container maxWidth="md">
                 <Toolbar style={{paddingLeft:0, marginLeft:0}}>
-                <img src="/mstile-150x150.png" style={{width:56, height: 56, paddingTop:8, paddingLeft: 8}} />
+                <img alt='Logo' src="/mstile-150x150.png" style={{width:56, height: 56, paddingTop:8, paddingLeft: 8}} />
                 <div>    
                 <Typography variant="body1" className={classes.title} style={{paddingLeft: 8, lineHeight: "22px"}}>
                     SQL Server Sixth Sense Dashboard
@@ -152,7 +154,7 @@ function App() {
                 </Container>
             </AppBar>
             
-            <Para header={(<>{FireIcon(20, fireIconColor)} Features</>)} list={features} />
+            <Para header={(<>{FireIcon(20, fireIconColor)}&nbsp;&nbsp;Features</>)} list={features} />
             
             <br/>
 
@@ -160,7 +162,7 @@ function App() {
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
-                        ❋ Highlight: Root Categories are the application components
+                        ❋&nbsp;&nbsp;Highlight: Root Categories are the application components
                     </Typography>
                     <video controls width="100%" loop muted poster={RootCategoriesTitlePng}>
                         <source src="https://github.com/devizer/devizer.github.io/releases/download/video%2FApplicationComponents/ApplicationComponents.mp4" />
@@ -174,7 +176,7 @@ function App() {
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
-                        ❋ Demo 2: Drill down into a performance issue
+                        ❋&nbsp;&nbsp;Demo 2: Drill down into a performance issue
                     </Typography>
                     <video controls poster={Issue1TitlePng} width="100%" loop muted>
                         <source src="https://github.com/devizer/devizer.github.io/releases/download/video%2FPerformance-Issue-1/Performance-Issue-1.mp4" />
@@ -188,7 +190,7 @@ function App() {
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
-                        ❋ Demo 3: Drill down into paging issue
+                        ❋&nbsp;&nbsp;Demo 3: Drill down into paging issue
                     </Typography>
                     <video controls width="100%" loop muted poster={Issue2TitlePng}>
                         <source src="https://github.com/devizer/devizer.github.io/releases/download/video%2FPaging-Issue-2/Paging-Issue-2.mp4" />
@@ -198,12 +200,16 @@ function App() {
             
             <br/>
             
-            <Para itemPaddingBottom={8} itemPaddingTopFirst={12} itemPaddingTop={1} header={(<>{ReasonToBuyIcon(20, owlIconColor)} 4 Reasons to buy S5 Dashboard</>)} list={reasonsToBuy} bulletChar={null}/>
-
+            <Para itemPaddingBottom={8} itemPaddingTopFirst={12} itemPaddingTop={1} 
+                  header={(<>{ReasonToBuyIcon(20, owlIconColor)}&nbsp;&nbsp;4 Reasons to buy S5 Dashboard</>)} list={reasonsToBuy} 
+                  bulletChar={null}
+            />
             <br/>
 
-            <Para header={(<>{OwlIcon(20, owlIconColor)} System Requirements</>)} list={systemRequirement} bulletChar={"•"}/>
-
+            <Para 
+                header={(<>{OwlIcon(20, owlIconColor)}&nbsp;&nbsp;Wide support of platforms and OSs</>)} list={systemRequirement} 
+                bulletChar={"•"}
+            />
             <br/>
 
         </ThemeProvider>
