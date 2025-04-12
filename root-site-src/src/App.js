@@ -159,8 +159,6 @@ function App() {
 
     const classesRows = stylesCells();
 
-
-
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
@@ -185,7 +183,7 @@ function App() {
             <Container className={classesRows.root} maxWidth="md">
                 <Paper elevation={3}>
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
-                        ❋&nbsp;&nbsp;The Killer Feature
+                        {FireIcon(20, fireIconColor)}&nbsp;&nbsp;The Killer Feature
                     </Typography>
                     <Typography variant="body1" className='Description'>
                         Whole picture of the performance of yours application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.
@@ -193,7 +191,7 @@ function App() {
                 </Paper>
                 <Paper elevation={3}>
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
-                        ❋&nbsp;&nbsp;The Bombastic Feature
+                        {FireIcon(20, fireIconColor)}&nbsp;&nbsp;The Bombastic Feature
                     </Typography>
                     <Typography variant="body1" className='Description'>
                         Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.
@@ -202,7 +200,7 @@ function App() {
             </Container>
             <br/>
             
-            <Para header={(<>{FireIcon(20, fireIconColor)}&nbsp;&nbsp;Features</>)} list={features} />
+            <Para header={(<>❋&nbsp;&nbsp;Features</>)} list={features} />
             
             <br/>
 
@@ -255,7 +253,7 @@ function App() {
             <br/>
 
             <Para 
-                header={(<>{OwlIcon(20, owlIconColor)}&nbsp;&nbsp;Wide support of platforms and OSs</>)} list={systemRequirement} 
+                header={(<>{OwlIcon(20, owlIconColor)}&nbsp;&nbsp;Wide support of platforms and OS</>)} list={systemRequirement} 
                 bulletChar={"•"}
             />
             <br/>
