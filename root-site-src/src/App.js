@@ -97,9 +97,9 @@ function App() {
     const nbsp = String.fromCharCode(160);
 
     const features = [
-        /*"Prevent performance degradation on a release.",*/
-        "Whole picture of the performance of yours application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
-        "Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.",
+        /*"Prevent performance degradation on a release.", - moved to REASONS TO BUY */
+        // "Whole picture of the performance of yours application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.",
+        // "Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.",
         "Debuggable SQL Server underlying level interop.",
         "Bottleneck visualization, including application side and SQL Server side.",
         "Anti-patterns visualization, such as excessive I/O and Select N+1.",
@@ -133,6 +133,33 @@ function App() {
         // "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
+    const cellsGap=20;
+    const stylesCells = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            // margin: 'auto auto auto auto',
+            // width: '100%',
+            gap: cellsGap,
+            '& > *': {
+                margin: theme.spacing(0),
+                // width: theme.spacing(16),
+                width: `calc(50% - ${cellsGap / 2}px)`,
+                // height: theme.spacing(16), IS NOT FIXED,
+            },
+            '& > *:first-child': {
+                // marginRight: 10
+            },
+            '& .Description': {
+                padding: "0px 24px 20px 24px !important",
+            }
+            
+        },
+    }));
+
+    const classesRows = stylesCells();
+
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -153,6 +180,27 @@ function App() {
                 </Toolbar>
                 </Container>
             </AppBar>
+
+            <br/><br/>
+            <Container className={classesRows.root} maxWidth="md">
+                <Paper elevation={3}>
+                    <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
+                        ❋&nbsp;&nbsp;The Killer Feature
+                    </Typography>
+                    <Typography variant="body1" className='Description'>
+                        Whole picture of the performance of yours application components, including user actions, web api endpoints, background tasks, queue workers, and test cases.
+                    </Typography>
+                </Paper>
+                <Paper elevation={3}>
+                    <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
+                        ❋&nbsp;&nbsp;The Bombastic Feature
+                    </Typography>
+                    <Typography variant="body1" className='Description'>
+                        Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.
+                    </Typography>
+                </Paper>
+            </Container>
+            <br/>
             
             <Para header={(<>{FireIcon(20, fireIconColor)}&nbsp;&nbsp;Features</>)} list={features} />
             
