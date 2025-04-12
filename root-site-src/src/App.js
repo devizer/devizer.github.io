@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import './App.css';
-import "@fontsource/roboto-slab/400.css"; // Specify weight
+import "@fontsource/roboto-slab/latin-400.css"; // Specify weight
 import {useEffect, useState} from "react";
 import ThemeStore from "./stores/ThemeStore";
 import {BuildDate} from "./BuildDate";
@@ -13,8 +13,9 @@ import {Container, makeStyles, Paper, Toolbar, Typography} from "@material-ui/co
 
 import AppBar from '@material-ui/core/AppBar';
 
-import Issue1TitlePng from './Posters/Issue1-Title.png'
+// Posters for 3 Videos
 import RootCategoriesTitlePng from './Posters/Title-Root-Categories.png'
+import Issue1TitlePng from './Posters/Issue1-Title.png'
 import Issue2TitlePng from './Posters/Title-Issue2.png'
 
 import { ReactComponent as FireIconSvg } from './Icons/FireSvgIcon.svg';
@@ -27,7 +28,6 @@ const OwlIcon = (size= 20,  color='#000') => (<OwlIconSvg style={{width: size,he
 const ReasonToBuyIcon = (size= 20,  color='#000') => (<ReasonToBuyIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
 const ShineIcon = (size= 20,  color='#000') => (<ShineIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
 const ShineIconAligned = (size= 20,  color='#000') => (<div style={{paddingRight:8,marginTop:4,display:'inline-block'}}>{ShineIcon(size, color)}</div>);
-
 
 require('typeface-roboto')
 
@@ -200,8 +200,10 @@ function App() {
             </Container>
             <br/>
             
-            <Para header={(<>❋&nbsp;&nbsp;Features</>)} list={features} />
-            
+            <Para 
+                header={(<>❋&nbsp;&nbsp;Features</>)}
+                list={features} 
+            />
             <br/>
 
             <Container maxWidth="md" >
@@ -246,15 +248,17 @@ function App() {
             
             <br/>
             
-            <Para itemPaddingBottom={8} itemPaddingTopFirst={12} itemPaddingTop={1} 
-                  header={(<>{ReasonToBuyIcon(20, owlIconColor)}&nbsp;&nbsp;4 Reasons to buy S5 Dashboard</>)} list={reasonsToBuy} 
+            <Para itemPaddingBottom={8} itemPaddingTopFirst={12} itemPaddingTop={1}
+                  header={(<>{ReasonToBuyIcon(20, owlIconColor)}&nbsp;&nbsp;4 Reasons to buy S5 Dashboard</>)}
                   bulletChar={null}
+                  list={reasonsToBuy} 
             />
             <br/>
 
             <Para 
-                header={(<>{OwlIcon(20, owlIconColor)}&nbsp;&nbsp;Wide support of platforms and OS</>)} list={systemRequirement} 
+                header={(<>{OwlIcon(20, owlIconColor)}&nbsp;&nbsp;Wide support of platforms and OS</>)}
                 bulletChar={"•"}
+                list={systemRequirement} 
             />
             <br/>
 
