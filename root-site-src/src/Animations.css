@@ -19,18 +19,18 @@
 .PaperContainer {
   /* border: 1px solid green; */
   transform-origin: 50% 50%;
-  transition: 0.5s;
+  transition: 0.5s !important;
   display: block;
-  transform: rotate(0deg);
+  transform: rotate(0deg) !important;;
   /*transform: rotate(-3deg);*/
 }
 .PaperContainer:hover {
   /*animation: panel-container-hover 1s;*/
   /*transform: rotate(-360deg);*/
   transform-origin: 50% 50%;
-  transition: 0.5s;
+  transition: 0.5s !important;
   display: block;
-  transform: rotate(0deg) scale(1.03, 1.03);
+  transform: rotate(0deg) scale(1.03, 1.03) !important;
 }
 
 
