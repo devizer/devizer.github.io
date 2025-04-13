@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import 'core-js/actual';
 import './App.css';
 import './Animations.css';
 import "@fontsource/roboto-slab/latin-400.css"; // Specify weight
@@ -207,7 +208,7 @@ function App() {
             />
             <br/>
 
-            <Container maxWidth="md" >
+            <Container maxWidth="md" className={`PaperContainer`}>
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>

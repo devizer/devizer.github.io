@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.1.10",
     "babel-polyfill": "^6.26.0",
     "copy-to-clipboard": "^3.3.1",
+    "core-js": "^3.41.0",
     "es6-promise": "^4.2.8",
     "flux": "^4.0.3",
     "glob": "^7.1.6",
@@ -58,13 +59,15 @@
       ">0.05%",
       "not op_mini all",
       "safari >= 9.1",
-      "ie >= 10"
+      "ie >= 11"
     ],
     "development": [
       "last 3 chrome version",
       "last 3 firefox version",
       "last 3 safari version",
-      "last 3 opera version"
+      "last 3 opera version",
+      "safari >= 9.1",
+      "ie >= 11"
     ]
   },
   "devDependencies": {
