@@ -135,7 +135,7 @@ function App() {
         // "Live Updates on Dashboard UI requires a modern browser running on a relatively fast CPU (i7-4770 and i3-10100 are ok, but Atom and AMD FX are not).",
     ];
 
-    const cellsGap=20;
+    const cellsGap= 40;
     const stylesCells = makeStyles((theme) => ({
         root: {
             display: 'flex',
@@ -208,6 +208,7 @@ function App() {
             />
             <br/>
 
+            {/* PaperContainer - animation on hover */}
             <Container maxWidth="md" className={`PaperContainer`}>
                 <br/>
                 <Paper elevation={3} >
@@ -222,7 +223,8 @@ function App() {
 
             <br/>
 
-            <Container maxWidth="md" >
+            {/* PaperContainer - animation on hover */}
+            <Container maxWidth="md" className={`PaperContainer`}>
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
@@ -235,8 +237,9 @@ function App() {
             </Container>
             
             <br/>
-            
-            <Container maxWidth="md" >
+
+            {/* PaperContainer - animation on hover */}
+            <Container maxWidth="md" className={`PaperContainer`}>
                 <br/>
                 <Paper elevation={3} >
                     <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>

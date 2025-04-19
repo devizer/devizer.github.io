@@ -3,6 +3,7 @@ import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'typeface-roboto'
 import App from './App';
 
 ReactDOM.render(
@@ -11,4 +12,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
