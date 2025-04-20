@@ -31,7 +31,7 @@ const ReasonToBuyIcon = (size= 20,  color='#000') => (<ReasonToBuyIconSvg style=
 const ShineIcon = (size= 20,  color='#000') => (<ShineIconSvg style={{width: size,height:size,fill:color,strokeWidth:'1px',stroke:color }} />);
 const ShineIconAligned = (size= 20,  color='#000') => (<div style={{paddingRight:8,marginTop:4,display:'inline-block'}}>{ShineIcon(size, color)}</div>);
 
-require('typeface-roboto')
+// require('typeface-roboto')
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -46,7 +46,7 @@ function App() {
         console.log(`%c SYSTEM THEME CHANGED: ${newTheme}`, `color: ${color}`);
         setSystemTheme(newTheme);
     }
-
+    
     const theme = React.useMemo(() =>
           createTheme({
             palette: {
@@ -196,7 +196,7 @@ function App() {
                         {FireIcon(20, fireIconColor)}&nbsp;&nbsp;The Bombastic Feature
                     </Typography>
                     <Typography variant="body1" className='Description'>
-                        Detailed workload and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.
+                        Detailed SQL workload traces and metrics sliced by user actions, web api endpoints, background tasks, queue workers, and test cases.
                     </Typography>
                 </Paper>
             </Container>

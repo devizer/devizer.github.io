@@ -8,6 +8,8 @@ xcopy /s /e /y /q /r build ..
 if errorlevel 1 goto :error
 git add --all ..\static
 echo DONE! Both Build and XCOPY successfully completed.
+cd build
+dotnet serve -o
 goto :exit
 
 :error
