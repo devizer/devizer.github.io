@@ -202,7 +202,7 @@ function App() {
             </Container>
             <br/>
             
-            <Para 
+            <Para itemPaddingTopFirst={20} 
                 header={(<>❋&nbsp;&nbsp;Features</>)}
                 list={features} 
             />
@@ -260,7 +260,7 @@ function App() {
             />
             <br/>
 
-            <Para 
+            <Para itemPaddingTopFirst={20} 
                 header={(<>{OwlIcon(20, owlIconColor)}&nbsp;&nbsp;Wide support of platforms and OS</>)}
                 bulletChar={"•"}
                 list={systemRequirement} 
