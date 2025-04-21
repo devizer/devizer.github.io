@@ -265,7 +265,7 @@ function App() {
                 bulletChar={"•"}
                 list={systemRequirement} 
             />
-            <br/>
+            <br/><br/>
 
         </ThemeProvider>
     );
