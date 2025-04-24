@@ -115,7 +115,7 @@ function App() {
         "Get proven implementation of strategy in quality by functional testing in a repeatable and reliable way.",
     ];
 
-    reasonsToBuy = reasonsToBuy.map(s => {
+    let reasonsToBuyCustomized = reasonsToBuy.map(s => {
         return (
             <div style={{display: "flex", alignItems: 'center', paddingBottom: 0}}>
                 <span style={{alignSelf: 'flex-start'}}>{ShineIconAligned(40, owlIconColor)}</span>
@@ -253,10 +253,20 @@ function App() {
             
             <br/>
             
+{/*
             <Para itemPaddingBottom={8} itemPaddingTopFirst={12} itemPaddingTop={1}
                   header={(<>{ReasonToBuyIcon(20, owlIconColor)}&nbsp;&nbsp;4 Reasons to buy S5 Dashboard</>)}
                   bulletChar={null}
                   list={reasonsToBuy} 
+            />
+*/}
+            <Para itemPaddingTopFirst={20}
+                  header={(<>{ReasonToBuyIcon(20, owlIconColor)}&nbsp;&nbsp;4 Reasons to buy S5 Dashboard</>)}
+                  bulletChar1={<span style={{fontVariantEmoji: "text"}}>&#x1F31F;&nbsp;</span>}
+                  bulletChar={<span style={{fontVariantEmoji: "text"}}>&#x2728;&nbsp;</span>}
+                  bulletChar3={<span style={{fontVariantEmoji: "text"}}>&#x2747;&nbsp;</span>}
+                  
+                  list={reasonsToBuy}
             />
             <br/>
 
