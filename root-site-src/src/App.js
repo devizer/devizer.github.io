@@ -170,7 +170,7 @@ function App() {
                 <img alt='Logo' src="/mstile-150x150.png" style={{width:56, height: 56, paddingTop:8, paddingLeft: 8}} />
                 <div>    
                 <Typography variant="body1" className={classes.title} style={{paddingLeft: 8, lineHeight: "22px"}}>
-                    SQL Server Sixth Sense Dashboard
+                    SQL Sixth Sense Dashboard
                     <div className={classes.separator} />
                     <small style={{fontWeight: "normal", opacity: "70%", lineHeight: "18px"}}>
                         Yours sixth sense in developent, testing, and maintenance
@@ -201,10 +201,11 @@ function App() {
                 </Paper>
             </Container>
             <br/>
-            
-            <Para itemPaddingTopFirst={20} 
-                header={(<>❋&nbsp;&nbsp;Features</>)}
-                list={features} 
+
+            <Para itemPaddingTopFirst={20}
+                  header={(<>❋&nbsp;&nbsp;Features</>)}
+                  list={features}
+                  bulletChar={<>•&nbsp;</>}
             />
             <br/>
 
@@ -263,7 +264,7 @@ function App() {
             <Para itemPaddingTopFirst={20}
                   header={(<>{ReasonToBuyIcon(20, owlIconColor)}&nbsp;&nbsp;4 Reasons to buy S5 Dashboard</>)}
                   bulletChar1={<span style={{fontVariantEmoji: "text"}}>&#x1F31F;&nbsp;</span>}
-                  bulletChar={<span style={{fontVariantEmoji: "text"}}>&#x2728;&nbsp;</span>}
+                  bulletChar={<span style={{fontVariantEmoji: "text"}}>✴&nbsp;</span>} /*2728*/
                   bulletChar3={<span style={{fontVariantEmoji: "text"}}>&#x2747;&nbsp;</span>}
                   
                   list={reasonsToBuy}
@@ -272,7 +273,7 @@ function App() {
 
             <Para itemPaddingTopFirst={20} 
                 header={(<>{OwlIcon(20, owlIconColor)}&nbsp;&nbsp;Wide support of platforms and OS</>)}
-                bulletChar={"•"}
+                bulletChar={<>•&nbsp;</>}
                 list={systemRequirement} 
             />
             <br/><br/>
