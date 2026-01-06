@@ -126,8 +126,8 @@ function App() {
 
 
     const systemRequirement = [
-        `Yours App Components: .NET Core 1.0${nbsp}…${nbsp}8.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
-        `Yours SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2022 including Express Edition and LocalDB.`,
+        `Yours App Components: .NET Core 1.0${nbsp}…${nbsp}10.0+, .NET Framework 3.5${nbsp}…${nbsp}4.8+.`,
+        `Yours SQL Server Versions: SQL Server 2008${nbsp}…${nbsp}2025 including Express Edition and LocalDB.`,
         "Full support of both Intel and ARM platforms for yours application components and Dashboard.",
         "Dashboard API: Windows, Linux, or MacOS as container or SystemD or Windows Service. IIS is also supported.",
         `Dashboard desktop for Windows: x64, arm64, and x86.`

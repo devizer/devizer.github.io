@@ -6,6 +6,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0px !important; /* that the ugly padding on dialogs? */
+
+  /*
+  background-image: url('body-background.png');
+  */
+  background-repeat: no-repeat;          /* повторять по вертикали */
+  background-size: 100% auto;           /* ширина 100%, высота автоматически */
+  background-position: top center;      /* выравнивание по центру по горизонтали */
+  background-attachment: scroll;        /* фоновое изображение прокручивается вместе со страницей */
+  margin: 0;
+  padding: 0;
 }
 
 code {
