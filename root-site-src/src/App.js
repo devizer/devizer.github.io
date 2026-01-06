@@ -5,6 +5,7 @@ import './Animations.css';
 import "@fontsource/roboto-slab/latin-400.css"; // Specify weight
 import {useEffect, useState} from "react";
 import ThemeStore from "./stores/ThemeStore";
+import DocumentVisibilityStore from "./stores/DocumentVisibilityStore";
 import {BuildDate} from "./BuildDate";
 
 import React from 'react';
@@ -38,7 +39,7 @@ require('isomorphic-fetch');
 
 function App() {
 
-
+    DocumentVisibilityStore.on(isVisible => console.log("the app visibility changed: isVisible = " + isVisible));
     let buildDate = BuildDate?.length?.toLocaleString();
     const [systemTheme, setSystemTheme] = useState(ThemeStore.getSystemTheme());
     const onThemeChanged = newTheme => {

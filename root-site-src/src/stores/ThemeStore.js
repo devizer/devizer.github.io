@@ -41,9 +41,9 @@ if (global && global.matchMedia && global.matchMedia(mediaQuery) && global.match
 }
 
 const ThemeStore = {
-    on,
+    on, // parameter is function onChanged(themeName: string), dark|light
     off,
-    getSystemTheme
+    getSystemTheme // returns string dark|light
 }
 
 export default ThemeStore;
