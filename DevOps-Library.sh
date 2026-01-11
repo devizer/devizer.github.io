@@ -344,10 +344,10 @@ function Get-Global-Seconds() {
   the_SYSTEM2="${the_SYSTEM2:-$(uname -s)}"
   if [[ ${the_SYSTEM2} != "Darwin" ]]; then
       # uptime=$(</proc/uptime);                                # 42645.93 240538.58
-      uptime="$(cat /proc/uptime 2>/dev/null)";                 # 42645.93 240538.58
+      uptime="$(cat /proc/uptime 2>/dev/null || true)";                 # 42645.93 240538.58
       if [[ -z "${uptime:-}" ]]; then
         # secured, use number of seconds since 1970
-        echo "$(date +%s)"
+        echo "$(date +%s || true)"
         return
       fi
       IFS=' ' read -ra uptime <<< "$uptime";                    # 42645.93 240538.58
