@@ -39,7 +39,7 @@ if [[ -z "${TARGET_DIR:-}" ]]; then
   TARGET_DIR="$defult_target_dir"
 fi
 
-echo "Installing DevOps-Library.sh and 42 commands into [${TARGET_DIR}]"
+echo "Installing DevOps-Library.sh and 41 commands into [${TARGET_DIR}]"
 
 mkdir -p "${TARGET_DIR}" 2>/dev/null || sudo mkdir -p "${TARGET_DIR}" 2>/dev/null || true
 if [[ ! -d "${TARGET_DIR}" ]]; then
@@ -1056,7 +1056,7 @@ for candidate in /usr/bin/env "${PREFIX:-}/bin/bash" /bin/bash /opt/bin/bash; do
 done
 [[ "$sh" == "/usr/bin/env" ]] && sh="$sh bash"
 
-for cmd in 'Clean-Up-My-Temp-Folders-and-Files-on-Exit' 'Colorize' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Linux' 'Is-MacOS' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Qemu-VM-Implementation' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
+for cmd in 'Clean-Up-My-Temp-Folders-and-Files-on-Exit' 'Colorize' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Linux' 'Is-MacOS' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
    local line1='SCRIPTPATH=$(pushd "$(dirname "$0")" > /dev/null && pwd -P && popd > /dev/null)'
    local sheBang="#!/usr/bin/env bash"
    if [[ ! -e /usr/bin/env ]]; then sheBang="#!/bin/bash"; fi
