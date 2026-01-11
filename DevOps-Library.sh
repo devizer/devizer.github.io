@@ -341,8 +341,8 @@ EOF_SHOW_GLIBC_VERSION
 
 # Include File: [\Includes\Get-Global-Seconds.sh]
 function Get-Global-Seconds() {
-  theSYSTEM="${theSYSTEM:-$(uname -s)}"
-  if [[ ${theSYSTEM} != "Darwin" ]]; then
+  the_SYSTEM2="${the_SYSTEM2:-$(uname -s)}"
+  if [[ ${the_SYSTEM2} != "Darwin" ]]; then
       # uptime=$(</proc/uptime);                                # 42645.93 240538.58
       uptime="$(cat /proc/uptime 2>/dev/null)";                 # 42645.93 240538.58
       if [[ -z "${uptime:-}" ]]; then
@@ -793,7 +793,7 @@ set -eu; set -o pipefail
 # https://dev.azure.com
 # https://stackoverflow.com/questions/43291389/using-jq-to-assign-multiple-output-variables
 AZURE_DEVOPS_API_BASE="${AZURE_DEVOPS_API_BASE:-https://dev.azure.com/devizer/azure-pipelines-agent-in-docker}"
-AZURE_DEVOPS_ARTIFACT_NAME="${AZURE_DEVOPS_ARTIFACT_NAME:-BinTests}"
+AZURE_DEVOPS_ARTIFACT_NAME="${AZURE_DEVOPS_ARTIFACT_NAME:-BinTests}" # not used anymore
 AZURE_DEVOPS_API_PAT="${AZURE_DEVOPS_API_PAT:-}"; # empty for public project, mandatory for private
 # PIPELINE_NAME="" - optional of more then one pipeline produce same ARTIFACT_NAME
 
