@@ -979,8 +979,6 @@ Options:
         true # fix bash 3.2
         local xx=yy;
         local xx_v2=yy2;
-
-
         return 0;;
 
       -r|--runner)
