@@ -647,7 +647,7 @@ function Test-Is-MacOS() {
   if [[ "$(Get-OS-Platform)" == "MacOS" ]]; then return 0; else return 1; fi
 }
 
-function Is_MacOS() {
+function Is-MacOS() {
   if Test-Is-MacOS; then echo "True"; else echo "False"; fi
 }
 
@@ -781,8 +781,9 @@ Test-Is-Musl-Linux() {
 }
 
 Is-Musl-Linux() {
-  if Test_Is_Musl_Linux; then echo "True"; else echo "False"; fi
+  if Test-Is-Musl-Linux; then echo "True"; else echo "False"; fi
 }
+
 # Include File: [\Includes\To-Boolean.sh]
 # return True|False
 function To-Boolean() {
