@@ -21,7 +21,7 @@ Is-Folder-Writeable() {
 system_type=default
 if [[ -z "${TARGET_DIR:-}" ]]; then
   defult_target_dir=/usr/local/bin
-  if [[ -n "${TERMUX_VERSION}" ]] && [[ -n "${PREFIX}" ]] && [[ -d "${PREFIX}" ]]; then
+  if [[ -n "${TERMUX_VERSION:-}" ]] && [[ -n "${PREFIX:-}" ]] && [[ -d "${PREFIX:-}" ]]; then
     defult_target_dir="$PREFIX/bin"
     system_type=termux
   elif [[ "$(uname -s)" == *"MINGW"* || "$(uname -s)" == *"MSYS"* ]] && [[ -d "C:\\Windows" ]]; then
