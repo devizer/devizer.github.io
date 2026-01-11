@@ -886,8 +886,7 @@ Run-Remote-Script() {
   while [ $# -gt 0 ]; do
     case "$1" in
       -h|--help)
-        cat << EOFHELPRRS
-Usage: $0 [OPTIONS] <URL>
+        echo 'Usage: Run-Remote-Script [OPTIONS] <URL>
 
 Arguments:
   URL                Target URL (required)
@@ -895,11 +894,11 @@ Arguments:
 Options:
   -r, --runner STR   Specify the runner string
   -h, --help         Show this help message and exit
-EOFHELPRRS
+'
+
         return 0
         ;;
       -r|--runner)
-        # safe detect is $2 present for set -u
         if [ $# -gt 1 ]; then
           arg_runner="$2"
           shift 2
