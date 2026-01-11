@@ -77,7 +77,8 @@ Install-File-Smarty-Impl() {
 Install_DEVOPS_LIBRARY_SH() {
 
 
-    local Content_DEVOPS_LIBRARY_SH; Content_DEVOPS_LIBRARY_SH=$(cat <<'EOF_DEVOPS_LIBRARY_SH'
+local tmp_file=$(mktemp)
+cat <<'EOF_DEVOPS_LIBRARY_SH' > "$tmp_file"
 #!/usr/bin/env bash
 # V1
 # file=/usr/local/bin/DevOps-Library.sh; sudo mkdir -p "$(dirname "$file")" 2>/dev/null; url=https://raw.githubusercontent.com/devizer/glist/master/DevOps-Lib.sh; (wget -q -nv --no-check-certificate -O "$file" $url 2>/dev/null || curl -o "$file" -ksSL $url); . $file; printf "\n\ntest -f $file && . $file" >> ~/.bashrc
@@ -1042,7 +1043,10 @@ Options:
 
 
 EOF_DEVOPS_LIBRARY_SH
-)
+
+local Content_DEVOPS_LIBRARY_SH;
+Content_DEVOPS_LIBRARY_SH=$(cat "$tmp_file")
+rm -f "$tmp_file" 2>/dev/null || rm -f "$tmp_file" 2>/dev/null || true # termux workaround
 
 
 Install-File-Smarty-Impl "$TARGET_DIR"/"DevOps-Library.sh" "$Content_DEVOPS_LIBRARY_SH"
