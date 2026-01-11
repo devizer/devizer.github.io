@@ -269,7 +269,7 @@ Fetch-Distribution-File() {
   local toDelete
   for toDelete in "$hashSumsFile" "$hashValueFile"; do
     rm -f "$toDelete" 2>/dev/null || true
-    rm -rf "$(dirname "$toDelete")" 2>/dev/null || true
+    # rm -rf "$(dirname "$toDelete")" 2>/dev/null || true
   done
   
   if [[ "$actualHash" == "$targetHash" ]]; then
