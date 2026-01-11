@@ -975,10 +975,8 @@ Options:
   -r, --runner STR   Specify the runner string
   -h, --help         Show this help message and exit
 '
-
-
-
-
+        true # fix bash 3.2
+        local xx=yy
 
         return 0
         ;;
