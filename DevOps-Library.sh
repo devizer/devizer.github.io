@@ -201,32 +201,36 @@ Fetch-Distribution-File() {
 
 # Include File: [\Includes\Find-Decompressor.sh]
 function Find-Decompressor() {
-  local force_gzip_priority="$(To-Boolean "Env Var FORCE_GZIP_PRIORITY", "${FORCE_GZIP_PRIORITY:-}")"
+  local COMPRESSOR_EXT=''
+  local COMPRESSOR_EXTRACT=''
+  local force_fast_compression="$(To-Boolean "Env Var FORCE_FAST_COMPRESSION", "${FORCE_FAST_COMPRESSION:-}")"
   if [[ "$(Get-OS-Platform)" == Windows ]]; then
-      COMPRESSOR_EXT=7z
-      if [[ "$force_gzip_priority" == True ]]; then COMPRESSOR_EXT=zip; fi
-      COMPRESSOR_EXTRACT="{ echo $COMPRESSOR_EXT on windows does not support pipeline; exit 1 }"
-      return;
-  fi
-  COMPRESSOR_EXT=""
-  COMPRESSOR_EXTRACT=""
-  if [[ "$force_gzip_priority" == True ]]; then
-    if [[ "$(command -v gzip)" != "" ]]; then
-      COMPRESSOR_EXT=gz
-      COMPRESSOR_EXTRACT="gzip -f -d"
-    elif [[ "$(command -v xz)" != "" ]]; then
-      COMPRESSOR_EXT=xz
-      COMPRESSOR_EXTRACT="xz -f -d"
-    fi
+      if [[ "$force_fast_compression" == True ]]; then
+        COMPRESSOR_EXT=zip
+      else
+        COMPRESSOR_EXT=7z
+      fi
+      COMPRESSOR_EXTRACT="{ echo $COMPRESSOR_EXT on Windows does not support pipeline; exit 1; }"
   else
-    if [[ "$(command -v xz)" != "" ]]; then
-      COMPRESSOR_EXT=xz
-      COMPRESSOR_EXTRACT="xz -f -d"
-    elif [[ "$(command -v gzip)" != "" ]]; then
-      COMPRESSOR_EXT=gz
-      COMPRESSOR_EXTRACT="gzip -f -d"
-    fi
+     if [[ "$force_fast_compression" == True ]]; then
+       if [[ "$(command -v gzip)" != "" ]]; then
+         COMPRESSOR_EXT=gz
+         COMPRESSOR_EXTRACT="gzip -f -d"
+       elif [[ "$(command -v xz)" != "" ]]; then
+         COMPRESSOR_EXT=xz
+         COMPRESSOR_EXTRACT="xz -f -d"
+       fi
+     else
+       if [[ "$(command -v xz)" != "" ]]; then
+         COMPRESSOR_EXT=xz
+         COMPRESSOR_EXTRACT="xz -f -d"
+       elif [[ "$(command -v gzip)" != "" ]]; then
+         COMPRESSOR_EXT=gz
+         COMPRESSOR_EXTRACT="gzip -f -d"
+       fi
+     fi
   fi
+  printf "COMPRESSOR_EXT='%s'; COMPRESSOR_EXTRACT='%s';" "$COMPRESSOR_EXT" "$COMPRESSOR_EXTRACT"
 }
 
 # Include File: [\Includes\Find-Hash-Algorithm.sh]
