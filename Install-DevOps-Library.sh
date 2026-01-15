@@ -6,11 +6,15 @@ set -eu; set -o pipefail
 #            Router: /opt/usr/bin (/usr is readonly)
 # script=https://devizer.github.io/Install-DevOps-Library.sh; (wget -q -nv --no-check-certificate -O - $script 2>/dev/null || curl -ksSL $script) | bash
 
+system="$(uname -s)"
+is_windows=Flase; [[ "$system" == *"MINGW"* || "$system" == *"MSYS"* ]] && [[ -d "C:\\Windows" ]] && is_windows=True
+sudo="$(command -v sudo 2>/dev/null)"; [[ "$is_windows" == True ]] && sudo=""
+
 # Function below needs only for the routers
 Is-Folder-Writeable() {
   local folder="$1"
-  local file="$folder/setup.probe.$RANDOM.$(date "+%s" 2>/dev/null).tmp"
-  local sudo="sudo"; [[ -z "$(command -v sudo)" ]] && sudo=""
+  local random_string="$RANDOM.$(date "+%s" 2>/dev/null)"
+  local file="$folder/setup.probe.$random_string.tmp"
   $sudo mkdir -p "$folder" 2>/dev/null || true
   local err=""
   $sudo touch "$file" 2>/dev/null || err="err"
@@ -24,7 +28,7 @@ if [[ -z "${TARGET_DIR:-}" ]]; then
   if [[ -n "${TERMUX_VERSION:-}" ]] && [[ -n "${PREFIX:-}" ]] && [[ -d "${PREFIX:-}" ]]; then
     defult_target_dir="$PREFIX/bin"
     system_type=termux
-  elif [[ "$(uname -s)" == *"MINGW"* || "$(uname -s)" == *"MSYS"* ]] && [[ -d "C:\\Windows" ]]; then
+  elif [[ "$is_windows" == True ]]; then
     defult_target_dir="C:\\Windows"
     system_type=windows
   fi
@@ -49,7 +53,6 @@ fi
 Install-File-Smarty-Impl() {
   local fileName="$1"
   local fileContent="$2"
-  local sudo="$(command -v sudo)"
   # try without sudo
   local err=""
   echo "$fileContent" | tee "$fileName" 2>/dev/null 1>&2 || err=err
@@ -61,12 +64,13 @@ Install-File-Smarty-Impl() {
     fi
   fi
 
+  local is_file_exists=False; [[ -f "$fileName" ]] && is_file_exists=True;
   local errChMod=""
-  if [[ -f "$fileName" ]]; then
+  if [[ "$is_file_exists" == True ]]; then
     chmod +x "$fileName" >/dev/null 2>&1 || $sudo chmod +x "$fileName" >/dev/null 2>&1 || errChMod=err
   fi
 
-  if [[ ! -f "$fileName" ]]; then
+  if [[ "$is_file_exists" == False ]]; then
     echo "Installer Error: Unable to extract $(basename "$fileName") to $(dirname "$fileName")" >&2
   elif [[ -n "$errChMod" ]]; then
     echo "Installer Error: Unable to extract $(basename "$fileName") to $(dirname "$fileName")" >&2
