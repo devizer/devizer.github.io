@@ -8,7 +8,7 @@ set -eu; set -o pipefail
 
 system="$(uname -s)"
 is_windows=Flase; [[ "$system" == *"MINGW"* || "$system" == *"MSYS"* ]] && is_windows=True
-sudo="$(command -v sudo 2>/dev/null)"; [[ "$is_windows" == True ]] && sudo=""
+sudo="$(command -v sudo 2>/dev/null || true)"; [[ "$is_windows" == True ]] && sudo=""
 
 # Function below needs only for the routers
 Is-Folder-Writeable() {
