@@ -7,7 +7,7 @@ set -eu; set -o pipefail
 # script=https://devizer.github.io/Install-DevOps-Library.sh; (wget -q -nv --no-check-certificate -O - $script 2>/dev/null || curl -ksSL $script) | bash
 
 system="$(uname -s)"
-is_windows=Flase; [[ "$system" == *"MINGW"* || "$system" == *"MSYS"* ]] && [[ -d "C:\\Windows" ]] && is_windows=True
+is_windows=Flase; [[ "$system" == *"MINGW"* || "$system" == *"MSYS"* ]] && is_windows=True
 sudo="$(command -v sudo 2>/dev/null)"; [[ "$is_windows" == True ]] && sudo=""
 
 # Function below needs only for the routers
@@ -30,6 +30,7 @@ if [[ -z "${TARGET_DIR:-}" ]]; then
     system_type=termux
   elif [[ "$is_windows" == True ]]; then
     defult_target_dir="C:\\Windows"
+    [[ -n "${SYSTEMROOT:-}" ]] && [[ -d "${SYSTEMROOT:-}" ]] && defult_target_dir="${SYSTEMROOT:-}"
     system_type=windows
   fi
   
