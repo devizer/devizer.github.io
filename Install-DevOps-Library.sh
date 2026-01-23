@@ -1144,10 +1144,12 @@ done
 
 for cmd in 'Colorize' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
    local line1='SCRIPTPATH=$(pushd "$(dirname "$0")" > /dev/null && pwd -P && popd > /dev/null)'
+   local line2='if [[ ! -f "$SCRIPTPATH"/"DevOps-Library.sh" ]]; then cmd="$(command -v "$0")"; if [[ -n "$cmd" ]]; then SCRIPTPATH="$(dirname "$dir")"; fi; fi'
    local sheBang="#!${sh}"
    local content=$(cat <<EOF_CONTENT
 $sheBang
 $line1
+$line2
 . "\$SCRIPTPATH"/"DevOps-Library.sh"
 $cmd "\$@"
 EOF_CONTENT
