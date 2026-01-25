@@ -44,7 +44,7 @@ if [[ -z "${TARGET_DIR:-}" ]]; then
   TARGET_DIR="$defult_target_dir"
 fi
 
-echo "Installing DevOps-Library.sh and 42 commands into [${TARGET_DIR}]"
+echo "Installing DevOps-Library.sh and 44 commands into [${TARGET_DIR}]"
 
 mkdir -p "${TARGET_DIR}" 2>/dev/null || sudo mkdir -p "${TARGET_DIR}" 2>/dev/null || true
 if [[ ! -d "${TARGET_DIR}" ]]; then
@@ -406,6 +406,48 @@ function Format-Thousand() {
   awk -v n="$num" 'BEGIN { len=length(n); res=""; for (i=0;i<=len;i++) { res=substr(n,len-i+1,1) res; if (i > 0 && i < len && i % 3 == 0) { res = "," res } }; print res }' 2>/dev/null || echo "$num"
 }
 
+# Include File: [\Includes\Get-File-Size.sh]
+# returns size in bytes
+Get-File-Size() {
+    local file="${1:-}"
+    if [[ -n "$file" ]] && [[ -f "$file" ]]; then
+       local sz
+       # Ver 1
+       if [ "$(uname)" = "Darwin" ]; then
+           sz="$(stat -f %z "$file" 2>/dev/null)"
+       else
+           sz="$(stat -c %s "$file" 2>/dev/null)"
+       fi
+
+       # Ver 2
+       if [[ -z "$sz" ]]; then
+         sz=$(NO_COLOR=1 ls -1aln "$file" 2>/dev/null | awk '{print $5}')
+       fi
+       echo "$sz"
+    else
+      if [[ -n "$file" ]]; then
+        echo "Get-File-Size Warning! Missing file '$file'" >&2
+      fi
+    fi
+}
+# Include File: [\Includes\Get-Folder-Size.sh]
+# returns size in bytes
+Get-Folder-Size() {
+    local dir="${1:-}"
+    if [[ -n "$dir" ]] && [[ -d "$dir" ]]; then
+       local sz
+       if [[ "$(uname -s)" == Darwin ]]; then
+         sz="$(unset POSIXLY_CORRECT; $(Get-Sudo-Command) du -k -d 0 "$dir" 2>/dev/null | awk '{print 1024 * $1}' | tail -1 || true)"
+       else
+         sz="$(unset POSIXLY_CORRECT; $(Get-Sudo-Command) du -k --max-depth=0 "$dir" 2>/dev/null | awk '{print 1024 * $1}' || true)"
+       fi
+       echo "$sz"
+    else
+      if [[ -n "$dir" ]]; then
+        echo "Get-Folder-Size Warning! Missing folder '$dir'" >&2
+      fi
+    fi
+}
 # Include File: [\Includes\Get-GitHub-Latest-Release.sh]
 # output the TAG of the latest release of null 
 # does not require jq
@@ -1142,7 +1184,7 @@ for candidate in /usr/bin/env "${PREFIX:-}/bin/bash" /bin/bash /opt/bin/bash; do
 done
 [[ "$sh" == "/usr/bin/env" ]] && sh="$sh bash"
 
-for cmd in 'Colorize' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
+for cmd in 'Colorize' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-File-Size' 'Get-Folder-Size' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
    local line1='SCRIPTPATH=$(pushd "$(dirname "$0")" > /dev/null && pwd -P && popd > /dev/null)'
    local line2='if [[ ! -f "$SCRIPTPATH"/"DevOps-Library.sh" ]]; then cmd_full="$(command -v "$0")"; if [[ -n "$cmd_full" ]]; then SCRIPTPATH="$(dirname "$cmd_full")"; fi; fi'
    local sheBang="#!${sh}"
