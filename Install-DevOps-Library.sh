@@ -44,7 +44,7 @@ if [[ -z "${TARGET_DIR:-}" ]]; then
   TARGET_DIR="$defult_target_dir"
 fi
 
-echo "Installing DevOps-Library.sh and 46 commands into [${TARGET_DIR}]"
+echo "Installing DevOps-Library.sh and 47 commands into [${TARGET_DIR}]"
 
 mkdir -p "${TARGET_DIR}" 2>/dev/null || sudo mkdir -p "${TARGET_DIR}" 2>/dev/null || true
 if [[ ! -d "${TARGET_DIR}" ]]; then
@@ -148,6 +148,56 @@ Colorize() {
    fi
 }
 # say ZZZ the-incorrect-color
+
+# Include File: [\Includes\Compress-Distribution-Folder.sh]
+# 1) 7z v9.20 is not supported
+# 2) type is 7z|gz|xz|zip
+Compress-Distribution-Folder() {
+  local type="$1"
+  local compression_level="$2"
+  local source_folder="$3"
+  local target_file="$4"
+  local arg_low_priority="$(To-Lower-Case "${5:-}")"
+  local is_low_priority=False; [[ "$arg_low_priority" == "--low"* ]] && is_low_priority=True;
+
+  local plain_size="$(Format-Thousand "$(Get-Folder-Size "$source_folder")") bytes"
+  local nice_title="";
+  local nice=""; [[ "$is_low_priority" == True && "$(command -v nice)" ]] && nice="nice -n 1" && nice_title=" (low priority)"
+
+  if [[ ! -d "$source_folder" ]]; then 
+    Say --Display-As=Error "[Compress-Folder] Abort. Source folder '$source_folder' is missing"
+    return 1;
+  fi
+
+  mkdir -p "$(dirname "$target_file" 2>/dev/null)" 2>/dev/null
+  local target_file_full="$(cd "$(dirname "$target_file")"; pwd -P)/$(basename "$target_file")"
+
+  pushd "$source_folder" >/dev/null
+      # echo "[DEBUG] target_file_full = '$target_file_full'"
+      printf "Packing $source_folder ($plain_size) as ${target_file_full}${nice_title} ... "
+      [[ -f "$target_file_full" ]] && rm -f "$target_file_full" || true
+      local startAt=$(Get-Global-Seconds)
+      if [[ "$type" == "zip" ]]; then
+        $nice 7z a -bso0 -bsp0 -tzip -mx=${compression_level} "$target_file_full" * | { grep "archive\|bytes" || true; }
+      elif [[ "$type" == "7z" ]]; then
+        $nice 7z a -bso0 -bsp0 -t7z -mx=${compression_level} -m0=LZMA -ms=on -mqs=on "$target_file_full" * | { grep "archive\|bytes" || true; }
+      elif [[ "$type" == "gzip" || "$type" == "tgz" || "$type" == "tar.gz" ]]; then
+        if [[ -n "$(command -v pigz)" ]]; then
+          tar cf - . | $nice pigz -p $(nproc) -b 128 -${compression_level} > "$target_file_full"
+        else
+          tar cf - . | $nice gzip -${compression_level} > "$target_file_full"
+        fi
+      elif [[ "$type" == "xz" || "$type" == "txz" || "$type" == "tar.xz" ]]; then
+        tar cf - . | $nice 7z a dummy -txz -mx=${compression_level} -si -so > "$target_file_full"
+      else
+        Say --Display-As=Error "Abort. Unknown archive type '$type' for folder '$source_folder'"
+      fi
+      local seconds=$(( $(Get-Global-Seconds) - startAt ))
+      local seconds_string="$seconds seconds"; [[ "$seconds" == "1" ]] && seconds_string="1 second"
+
+      Colorize LightGreen "$(Format-Thousand "$(Get-File-Size "$target_file_full")") bytes (took $seconds_string)"
+  popd >/dev/null
+}
 
 # Include File: [\Includes\Download-File.sh]
 Download-File() {
@@ -1213,7 +1263,7 @@ for candidate in /usr/bin/env "${PREFIX:-}/bin/bash" /bin/bash /opt/bin/bash; do
 done
 [[ "$sh" == "/usr/bin/env" ]] && sh="$sh bash"
 
-for cmd in 'Colorize' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-7z-For-Unpack' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-File-Size' 'Get-Folder-Size' 'Get-GitHub-Latest-Release' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
+for cmd in 'Colorize' 'Compress-Distribution-Folder' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-7z-For-Unpack' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-File-Size' 'Get-Folder-Size' 'Get-GitHub-Latest-Release' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
    local line1='SCRIPTPATH=$(pushd "$(dirname "$0")" > /dev/null && pwd -P && popd > /dev/null)'
    local line2='if [[ ! -f "$SCRIPTPATH"/"DevOps-Library.sh" ]]; then cmd_full="$(command -v "$0")"; if [[ -n "$cmd_full" ]]; then SCRIPTPATH="$(dirname "$cmd_full")"; fi; fi'
    local sheBang="#!${sh}"
