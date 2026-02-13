@@ -44,7 +44,7 @@ if [[ -z "${TARGET_DIR:-}" ]]; then
   TARGET_DIR="$defult_target_dir"
 fi
 
-echo "Installing DevOps-Library.sh and 51 commands into [${TARGET_DIR}]"
+echo "Installing DevOps-Library.sh and 53 commands into [${TARGET_DIR}]"
 
 mkdir -p "${TARGET_DIR}" 2>/dev/null || sudo mkdir -p "${TARGET_DIR}" 2>/dev/null || true
 if [[ ! -d "${TARGET_DIR}" ]]; then
@@ -450,6 +450,20 @@ function Get-Hash-Of-File() {
   fi
 }
 
+Get-Hash-Of-Folder-Content() {
+  local alg="${1:-md5}"
+  local folder="${2:-}"
+  local sum=$(mktemp)
+  find "$folder" | sort | while IFS= read -r file; do
+    if [[ ! -f "$file" ]]; then continue; fi
+    local file_hash="$(Get-Hash-Of-File "$alg" "$file")"
+    printf "%s" "$file_hash" >> "$sum"
+  done
+  local ret=$(Get-Hash-Of-File "$alg" "$sum")
+  rm -f "$sum" 2>/dev/null || rm -f "$sum" 2>/dev/null || rm -f "$sum"
+  echo $ret
+}
+
 # Include File: [\Includes\Format-Size.sh]
 function Format-Size() {
   local num="$1"
@@ -483,6 +497,65 @@ function Format-Thousand() {
   # LC_NUMERIC=en_US.UTF-8 printf "%'.0f\n" "$num" # but it is locale dependent
   # Next is locale independent version for positive integers
   awk -v n="$num" 'BEGIN { len=length(n); res=""; for (i=0;i<=len;i++) { res=substr(n,len-i+1,1) res; if (i > 0 && i < len && i % 3 == 0) { res = "," res } }; print res }' 2>/dev/null || echo "$num"
+}
+
+# Include File: [\Includes\Get-Files-In-Optimal-Order-For-Solid-Archive.sh]
+Get-Files-In-Optimal-Order-For-Solid-Archive() {
+  local folder="$1"
+  local list=$(mktemp)
+  if [[ -z "$list" ]]; then echo "Missing mktemp. Abort" >&2; return 1; fi
+  find "$folder" > "$list"
+
+  touch "$list-folders"
+  touch "$list-files"
+  cat "$list" | while IFS= read -r line; do
+    if [[ -d "$line" ]]; then echo "$line" >> "$list-folders"; else echo "$line" >> "$list-files"; fi
+  done
+  
+  local inline_perl="$list-inline-perl.pl"
+  cat <<'PERL_SORT_FILES' > "${inline_perl}.pl"
+#!/usr/bin/perl
+use strict;
+sub get_file_key {
+    my ($full_path) = @_;
+    my $slash_pos = rindex($full_path, '/');
+    my ($folder, $file_name);
+    if ($slash_pos == -1) {
+        $folder    = "";
+        $file_name = $full_path;
+    } else {
+        $folder    = substr($full_path, 0, $slash_pos);
+        $file_name = substr($full_path, $slash_pos + 1);
+    }
+    my @file_name_parts = split(/\./, $file_name, -1);
+    my $file_name_normalized = join('.', reverse @file_name_parts);
+    return $file_name_normalized . ":" . $folder;
+}
+
+die "Usage: $0 <data_file>\n" unless @ARGV == 1;
+my $data_file = $ARGV[0];
+open(my $fh_data, '<', $data_file) or die "Cannot open $data_file: $!";
+my @data = <$fh_data>;
+close($fh_data);
+my @keys;
+foreach my $f (@data) {
+    my $line = lc($f);
+    my $key=lc($line);
+    $key=get_file_key($key);
+    push(@keys, $key);
+}
+my @sorted_indices = sort { $keys[$a] cmp $keys[$b] } 0 .. $#keys;
+print @data[@sorted_indices];
+PERL_SORT_FILES
+  perl "${inline_perl}.pl" "$list-files" > "$list-sorted-files" || { 
+      echo "Warning! perl is not available. Sorting order is not optimal for solid archive" >&2;
+      cat "$list-files" > "$list-sorted-files";
+  }
+  cat "$list-folders" > "$list-result"
+  cat "$list-sorted-files" >> "$list-result"
+  cat "$list-result"
+  # uncomment before publish
+  rm -f "$list"* 2>/dev/null || rm -f "$list"* 2>/dev/null || rm -f "$list"* 2>/dev/null
 }
 
 # Include File: [\Includes\Get-File-Size.sh]
@@ -1335,7 +1408,7 @@ for candidate in /usr/bin/env "${PREFIX:-}/bin/bash" /bin/bash /opt/bin/bash; do
 done
 [[ "$sh" == "/usr/bin/env" ]] && sh="$sh bash"
 
-for cmd in 'Colorize' 'Compress-Distribution-Folder' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-7z-For-Unpack' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-File-Size' 'Get-Folder-Size' 'Get-GitHub-Latest-Release' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Bionic-Linux' 'Is-BusyBox' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Bionic-Linux' 'Test-Is-BusyBox' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
+for cmd in 'Colorize' 'Compress-Distribution-Folder' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-7z-For-Unpack' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-Files-In-Optimal-Order-For-Solid-Archive' 'Get-File-Size' 'Get-Folder-Size' 'Get-GitHub-Latest-Release' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Hash-Of-Folder-Content' 'Get-Linux-OS-Bits' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Bionic-Linux' 'Is-BusyBox' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Bionic-Linux' 'Test-Is-BusyBox' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
    local line1='SCRIPTPATH=$(pushd "$(dirname "$0")" > /dev/null && pwd -P && popd > /dev/null)'
    local line2='if [[ ! -f "$SCRIPTPATH"/"DevOps-Library.sh" ]]; then cmd_full="$(command -v "$0")"; if [[ -n "$cmd_full" ]]; then SCRIPTPATH="$(dirname "$cmd_full")"; fi; fi'
    local sheBang="#!${sh}"
