@@ -44,7 +44,7 @@ if [[ -z "${TARGET_DIR:-}" ]]; then
   TARGET_DIR="$defult_target_dir"
 fi
 
-echo "Installing DevOps-Library.sh and 56 commands into [${TARGET_DIR}]"
+echo "Installing DevOps-Library.sh and 57 commands into [${TARGET_DIR}]"
 
 mkdir -p "${TARGET_DIR}" 2>/dev/null || sudo mkdir -p "${TARGET_DIR}" 2>/dev/null || true
 if [[ ! -d "${TARGET_DIR}" ]]; then
@@ -750,16 +750,23 @@ Get-Linux-OS-Bits() {
   # getconf may be absent
   local ret="$(getconf LONG_BIT 2>/dev/null || true)"
   if [[ -z "$ret" ]]; then
-     local arch;
-     if [[ -n "$(command -v dpkg)" ]]; then arch="$(dpkg --print-architecture 2>/dev/null || true)"; fi
-     if [[ -n "$(command -v apk)" ]];  then arch="$(apk info --print-arch 2>/dev/null || true)"; fi
-
+     local arch="$(Get-Linux-OS-Architecture)";
      if [[ "$arch" == "x86_64" || "$arch" == amd64 ]]; then echo "64"; return; fi
      if [[ "$arch" == arm64 || "$arch" == aarch64 ]]; then echo "64"; return; fi
      if [[ "$arch" == armhf || "$arch" == armel ]]; then echo "32"; return; fi
      if [[ "$arch" == i?86 || "$arch" == x86 ]]; then echo "32"; return; fi
   fi
   echo $ret;
+}
+
+Get-Linux-OS-Architecture() {
+  local arch="";
+  if [[ -n "$(command -v dpkg)" ]]; then arch="$(dpkg --print-architecture 2>/dev/null || true)"; 
+  elif [[ -n "$(command -v apk)" ]]; then arch="$(apk info --print-arch 2>/dev/null || true)"; 
+  elif [[ -n "$(command -v arch)" ]]; then arch="$(arch 2>/dev/null || true)";
+  elif [[ -n "$(command -v rpm)" ]]; then arch="$(rpm --eval '%{_arch}' 2>/dev/null || true)";
+  fi
+  echo "$arch"
 }
 
 # Include File: [\Includes\Get-NET-RID.sh]
@@ -989,7 +996,10 @@ Is-Microsoft-Hosted-Build-Agent() {
 
 # Include File: [\Includes\Is-Qemu-Process.sh]
 Is-Qemu-Process() {
-  grep -q '^x86_Thread_features' /proc/self/status 2>/dev/null && echo True && return || true
+  if grep -q '^x86_Thread_features' /proc/self/status 2>/dev/null; then
+    local arch="$(Get-Linux-OS-Architecture)"
+    if [[ "$arch" == arm* || "$arch" == aarch* ]]; then echo "True"; return; fi
+  fi
   if grep -q "qemu" /proc/self/maps 2>/dev/null; then echo "True"; return; fi
   if grep -q "qemu" /proc/self/auxv 2>/dev/null; then echo "True"; return; fi
   echo "False"
@@ -1774,7 +1784,7 @@ for candidate in /usr/bin/env "${PREFIX:-}/bin/bash" /bin/bash /opt/bin/bash; do
 done
 [[ "$sh" == "/usr/bin/env" ]] && sh="$sh bash"
 
-for cmd in 'Colorize' 'Compress-Distribution-Folder' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-7z-For-Unpack' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-Files-In-Optimal-Order-For-Solid-Archive' 'Get-File-Size' 'Get-Folder-Size' 'Get-GitHub-Latest-Release' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Hash-Of-Folder-Content' 'Get-Linux-OS-Bits' 'Get-Linux-OS-ID' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Bionic-Linux' 'Is-BusyBox' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-Process' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Repair-Legacy-OS-Sources' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Bionic-Linux' 'Test-Is-BusyBox' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
+for cmd in 'Colorize' 'Compress-Distribution-Folder' 'Download-File' 'Download-File-Failover' 'Echo-Red-Error' 'Extract-Archive' 'Fetch-Distribution-File' 'Find-7z-For-Unpack' 'Find-Decompressor' 'Find-Hash-Algorithm' 'Format-Size' 'Format-Thousand' 'Get-Files-In-Optimal-Order-For-Solid-Archive' 'Get-File-Size' 'Get-Folder-Size' 'Get-GitHub-Latest-Release' 'Get-Glibc-Version' 'Get-Global-Seconds' 'Get-Hash-Of-File' 'Get-Hash-Of-Folder-Content' 'Get-Linux-OS-Architecture' 'Get-Linux-OS-Bits' 'Get-Linux-OS-ID' 'Get-NET-RID' 'Get-OS-Platform' 'Get-Sudo-Command' 'Get-Tmp-Folder' 'Get-Windows-OS-Architecture' 'Is-Bionic-Linux' 'Is-BusyBox' 'Is-Linux' 'Is-MacOS' 'Is-Microsoft-Hosted-Build-Agent' 'Is-Musl-Linux' 'Is-Qemu-Process' 'Is-Qemu-VM' 'Is-Termux' 'Is-Windows' 'Is-WSL' 'MkTemp-File-Smarty' 'MkTemp-Folder-Smarty' 'Repair-Legacy-OS-Sources' 'Retry-On-Fail' 'Say-Definition' 'Test-Has-Command' 'Test-Is-Bionic-Linux' 'Test-Is-BusyBox' 'Test-Is-Linux' 'Test-Is-MacOS' 'Test-Is-Musl-Linux' 'Test-Is-Qemu-VM' 'Test-Is-Windows' 'Test-Is-WSL' 'To-Boolean' 'To-Lower-Case' 'Validate-File-Is-Not-Empty' 'Wait-For-HTTP'; do
    local line1='SCRIPTPATH=$(pushd "$(dirname "$0")" > /dev/null && pwd -P && popd > /dev/null)'
    local line2='if [[ ! -f "$SCRIPTPATH"/"DevOps-Library.sh" ]]; then cmd_full="$(command -v "$0")"; if [[ -n "$cmd_full" ]]; then SCRIPTPATH="$(dirname "$cmd_full")"; fi; fi'
    local sheBang="#!${sh}"
