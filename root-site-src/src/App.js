@@ -18,6 +18,7 @@ import AppBar from '@material-ui/core/AppBar';
 
 // Posters for 3 Videos
 import RootCategoriesTitlePng from './Posters/Title-Root-Categories.png'
+import DesktopAppIntroPosterPng from './Posters/Desktop-App-Intro.png'
 import Issue1TitlePng from './Posters/Issue1-Title.png'
 import Issue2TitlePng from './Posters/Title-Issue2.png'
 
@@ -211,6 +212,20 @@ function App() {
             <br/>
 
             {/* PaperContainer - animation on hover */}
+            <Container maxWidth="md" className={`PaperContainer`}>
+                <br/>
+                <Paper elevation={3} >
+                    <Typography variant="h5" className={`ParaHeader ${classes.paragraph}`}>
+                        ❋&nbsp;&nbsp;Dashboard Desktop app Intro
+                    </Typography>
+                    <video controls width="100%" loop muted poster={DesktopAppIntroPosterPng}>
+                        <source src="https://github.com/devizer/devizer.github.io/releases/download/Desktop-App-Intro/Desktop-App-Intro.mkv" />
+                    </video>
+                </Paper>
+            </Container>
+
+            <br/>
+
             <Container maxWidth="md" className={`PaperContainer`}>
                 <br/>
                 <Paper elevation={3} >
